@@ -16,7 +16,7 @@ This page explains how to install ROS 2 on Windows from a pre-built binary packa
 System requirements
 -------------------
 
-Only Windows 10 is supported.
+Only Windows 10 is supported. (Some users have gotten it to work on Windows 11, but this is not guaranteed.)
 
 .. _windows-install-binary-installing-prerequisites:
 
@@ -54,6 +54,8 @@ Install pixi
 
 Continue using the previous powershell session, and use the instructions on https://pixi.sh/latest/ to install ``pixi``.
 Once ``pixi`` has been installed, close the powershell session and start it again, which will ensure ``pixi`` is on the PATH.
+
+If pixi installs itself anywhere besides ``C:\pixi_ws``, be sure to move it to that location, per the notes above.
 
 Install dependencies
 ^^^^^^^^^^^^^^^^^^^^
@@ -93,7 +95,7 @@ See the :doc:`guide <../How-To-Guides/Working-with-multiple-RMW-implementations>
 Setup environment
 -----------------
 
-Start a new Windows command prompt, which will be used in the examples.
+Start a new Windows command prompt (CMD, not Powershell), which will be used in the examples.
 
 Source the pixi environment
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -119,17 +121,21 @@ If you do not have RTI Connext DDS installed on your computer, it is normal to r
 Try some examples
 -----------------
 
-In a command prompt, set up the ROS 2 environment as described above and then run a C++ ``talker``\ :
+In a command prompt, set up the ROS 2 environment as described above and then run a 
+
+Python ``listener``\ :
+
+.. code-block:: console
+
+   $ ros2 run demo_nodes_py listener
+
+Start another command prompt and run a C++ ``talker``\ :
 
 .. code-block:: console
 
    $ ros2 run demo_nodes_cpp talker
 
-Start another command shell and run a Python ``listener``\ :
 
-.. code-block:: console
-
-   $ ros2 run demo_nodes_py listener
 
 You should see the ``talker`` saying that it's ``Publishing`` messages and the ``listener`` saying ``I heard`` those messages.
 This verifies both the C++ and Python APIs are working properly.
